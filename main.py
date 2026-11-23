@@ -21,11 +21,14 @@ def main() -> None:
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     text = line()
-    assert len(text) <= 200, f"line is {len(text)} chars (max 200)"
-    assert len(text) >= 10, "line too short to be a sentence"
+    if len(text) > 200:
+        raise ValueError(f"line is {len(text)} chars (max 200)")
+    if len(text) < 10:
+        raise ValueError("line too short to be a sentence")
     path = os.path.join(out_dir, "entry.txt")
     with open(path, "w", encoding="utf-8") as fh:
         fh.write(text + "\n")
+    # Leave the file world-readable: the grader collects it as a different user.
     os.chmod(path, 0o644)
     print(f"wrote {path} ({len(text)} chars)")
 
