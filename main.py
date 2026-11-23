@@ -8,9 +8,13 @@ that lands a surprise that still makes sense.
 import os
 
 
+# The entry line: one sentence, ≤200 chars, a surprise that still makes sense.
+LINE = "I told my computer it needed a break — now it's sleeping for 8 hours and I can't reach it."
+
+
 def line() -> str:
-    """The one-line laugh. Surprise at the end, everyday truth underneath."""
-    return "I told my computer it needed a break — now it's sleeping for 8 hours and I can't reach it."
+    """Return the entry line."""
+    return LINE
 
 
 def main() -> None:
